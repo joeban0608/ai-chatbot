@@ -4,6 +4,7 @@ import OpenAI from 'openai'
 
 import { auth } from '@/auth'
 import { nanoid } from '@/lib/utils'
+import tools from '../constant/test-tools'
 
 export const runtime = 'edge'
 
@@ -29,6 +30,7 @@ export async function POST(req: Request) {
   const res = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
     messages,
+    tools: tools as any,
     temperature: 0.7,
     stream: true
   })
